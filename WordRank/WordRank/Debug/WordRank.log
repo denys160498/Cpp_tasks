@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\Денис\source\repos\WordRank\WordRank\main.cpp(20,41): warning C4244:  инициализация: преобразование "__int64" в "unsigned int", возможна потеря данных
+  WordRank.vcxproj -> C:\Users\Денис\source\repos\WordRank\Debug\WordRank.exe

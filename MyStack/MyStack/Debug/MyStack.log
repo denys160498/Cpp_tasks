@@ -1,0 +1,3 @@
+﻿  main.cpp
+  C:\Users\Денис\source\repos\MyStack\MyStack\MyStack.cpp(43) : warning C4715: MyStack<int>::printStack: значение возвращается не при всех путях выполнения
+  MyStack.vcxproj -> C:\Users\Денис\source\repos\MyStack\Debug\MyStack.exe

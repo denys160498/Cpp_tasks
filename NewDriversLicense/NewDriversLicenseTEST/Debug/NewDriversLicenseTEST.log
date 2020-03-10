@@ -1,0 +1,3 @@
+﻿  NewDriversLicenseTEST.cpp
+  C:\Users\Денис\source\repos\NewDriversLicense\NewDriversLicense\main.cpp(118) : warning C4715: getMyIndex: значение возвращается не при всех путях выполнения
+  NewDriversLicenseTEST.vcxproj -> C:\Users\Денис\source\repos\NewDriversLicense\Debug\NewDriversLicenseTEST.dll
