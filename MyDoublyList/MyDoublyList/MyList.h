@@ -12,6 +12,7 @@ private:
 		Node* next;
 	};
 
+protected:
 	int size;
 	Node* head;
 	Node* tail;

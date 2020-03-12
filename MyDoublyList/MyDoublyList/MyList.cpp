@@ -22,7 +22,7 @@ void MyList<T>::push_back(T data)
 	tail = nPtr;
 
 	if (size == 0)
-	{
+	{ 
 		head = nPtr;
 	}
 
