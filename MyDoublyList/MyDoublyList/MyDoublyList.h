@@ -1,8 +1,7 @@
 #pragma once
-#include "MyList.h"
 
 template <class T>
-class MyDoublyList:public MyList<T>
+class MyDoublyList
 {
 private:
 	struct Node
@@ -14,6 +13,7 @@ private:
 		Node* prev;
 	};
 protected:
+	int size;
 	Node* head;
 	Node* tail;
 public:
@@ -25,4 +25,5 @@ public:
 	void pop_front();
 	void print_backward() const;
 	void print() const;
+	void clean_up();
 };

@@ -20,6 +20,7 @@ void MyDoublyList<T>::push_front(T data)
 	if (this->size == 0)
 	{
 		this->head = nPtr;
+		this->tail = nPtr;
 		this->size++;
 		return;
 	}
@@ -40,11 +41,20 @@ template <class T>
 void MyDoublyList<T>::push_back(T data) // TODO: Fix the function
 {
 	Node* nPtr = new Node(data, this->tail, nullptr);
-	this->tail = nPtr;
-
+	
 	if (this->size == 0)
 	{
 		this->head = nPtr;
+		this->tail = nPtr;
+		return;
+	}
+
+	this->tail->prev = nPtr;
+	this->tail = nPtr;
+
+	if (this->size == 1)
+	{
+		this->head = this->tail->next;
 	}
 
 	this->size++;
@@ -81,10 +91,6 @@ void MyDoublyList<T>::pop_front()
 template <class T>
 void MyDoublyList<T>::print_backward() const
 {
-	if (this->size == 0)
-	{
-		return;
-	}
 	Node* tPtr = this->head;
 	while (tPtr != nullptr)
 	{
@@ -96,14 +102,23 @@ void MyDoublyList<T>::print_backward() const
 template <class T>
 void MyDoublyList<T>::print() const
 {
-	if (this->size == 0)
-	{
-		return;
-	}
 	Node* tPtr = this->tail;
 	while (tPtr != nullptr)
 	{
 		std::cout << tPtr->value << " ";
 		tPtr = tPtr->next;
+	}
+}
+
+template <class T>
+void MyDoublyList<T>::clean_up()
+{
+	Node* tPtr = this->tail;
+	while (tPtr != nullptr)
+	{
+		tail = tPtr->next;
+		delete tPtr;
+		tPtr = tail;
+		size--;
 	}
 }
