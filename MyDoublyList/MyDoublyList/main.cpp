@@ -17,10 +17,10 @@ int main()
 	{
 		MList.push_back(i);
 	}
-
+	/*
 	MList.pop_back();
 	MList.pop_front();
-
+	*/
 	MList.print();
 	cout << endl;
 	MList.print_backward();

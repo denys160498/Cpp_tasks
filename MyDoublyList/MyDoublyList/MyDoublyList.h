@@ -13,6 +13,7 @@ private:
 		Node* next;
 		Node* prev;
 	};
+protected:
 	Node* head;
 	Node* tail;
 public:

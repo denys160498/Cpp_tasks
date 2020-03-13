@@ -20,19 +20,24 @@ void MyDoublyList<T>::push_front(T data)
 	if (this->size == 0)
 	{
 		this->head = nPtr;
-		this->tail = nPtr;
 		this->size++;
 		return;
 	}
 
-	this->head->next = nPtr; //problem here
+	this->head->next = nPtr;
 	nPtr->prev = this->head;
 	this->head = nPtr;
+
+	if (this->size == 1)
+	{
+		this->tail = this->head->prev;
+	}
+
 	this->size++;
 }
 
 template <class T>
-void MyDoublyList<T>::push_back(T data)
+void MyDoublyList<T>::push_back(T data) // TODO: Fix the function
 {
 	Node* nPtr = new Node(data, this->tail, nullptr);
 	this->tail = nPtr;
