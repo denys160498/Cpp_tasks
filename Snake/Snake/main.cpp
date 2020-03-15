@@ -1,7 +1,8 @@
 #include "GameMap.h"
+#include "Game.h"
 
 int main()
 {
-	GameMap Map;
-	Map.draw();
+	Game GameObj;
+	GameObj.draw_map();
 }

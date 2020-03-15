@@ -7,4 +7,6 @@ private:
 	GameMap* Map;
 public:
 	Game();
+	~Game();
+	void draw_map() const;
 };
