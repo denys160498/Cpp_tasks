@@ -38,7 +38,7 @@ void MyDoublyList<T>::push_front(T data)
 }
 
 template <class T>
-void MyDoublyList<T>::push_back(T data) // TODO: Fix the function
+void MyDoublyList<T>::push_back(T data)
 {
 	Node* nPtr = new Node(data, this->tail, nullptr);
 	
