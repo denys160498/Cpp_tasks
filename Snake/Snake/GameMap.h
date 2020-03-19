@@ -14,5 +14,6 @@ public:
 
 	void draw() const;
 	void refresh();
-
+	int get_width();
+	int get_height();
 };
