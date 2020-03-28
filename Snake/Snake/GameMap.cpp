@@ -3,7 +3,7 @@
 #include <string>
 #include "GameMap.h"
 
-GameMap::GameMap(char bChar, int w, int h) : borderSign(bChar), width(w + 2), height(h + 2)
+GameMap::GameMap(char bChar, int w, int h) : borderSign(bChar), width(w), height(h)
 {
 	for (int i = 0; i <= height; i++)
 	{
@@ -30,4 +30,19 @@ void GameMap::draw() const
 		}
 		std::cout << std::endl;
 	}
+}
+
+int GameMap::get_width() const
+{
+	return this->width;
+}
+
+int GameMap::get_height() const
+{
+	return this->height;
+}
+
+std::vector<std::string>* GameMap::get_map_ptr()
+{
+	return &map;
 }

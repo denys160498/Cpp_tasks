@@ -14,6 +14,7 @@ public:
 
 	void draw() const;
 	void refresh();
-	int get_width();
-	int get_height();
+	int get_width() const;
+	int get_height() const;
+	std::vector<std::string>* get_map_ptr();
 };

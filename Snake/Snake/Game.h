@@ -6,9 +6,10 @@ class Game
 {
 private:	
 	GameMap* Map;
-	Snake* SnakeObj;
+	Snake* SnakePtr;
 public:
 	Game();
 	~Game();
 	void draw_map() const;
+	void inscribe_snake();
 };
