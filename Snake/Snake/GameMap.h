@@ -8,12 +8,12 @@ private:
 	int width;
 	int height;
 	char borderSign;
-	std::vector<std::string> map;
 public:
+	std::vector<std::string> map;
+	
 	GameMap(char bChar = '#' , int w = 25, int h = 25);
-
 	void draw() const;
-	void refresh();
+	void clear();
 	int get_width() const;
 	int get_height() const;
 	std::vector<std::string>* get_map_ptr();

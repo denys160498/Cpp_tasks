@@ -46,3 +46,18 @@ std::vector<std::string>* GameMap::get_map_ptr()
 {
 	return &map;
 }
+
+void GameMap::clear() 
+{
+	for (int i = 0; i <= height; i++)
+	{
+		for (int j = 0; j <= width; j++)
+		{
+			if (i == 0 || i == height || j == 0 || j == width)
+			{
+				continue;
+			}
+			map[i][j] = ' ';
+		}
+	}
+}

@@ -5,11 +5,13 @@
 class Game 
 {
 private:	
-	GameMap* Map;
+	GameMap* MapPtr;
 	Snake* SnakePtr;
 public:
 	Game();
-	~Game();
+	~Game(); 
 	void draw_map() const;
+	void clear_map() const;
 	void inscribe_snake();
+	Snake* get_snake_ptr() const;
 };

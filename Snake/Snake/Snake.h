@@ -1,15 +1,15 @@
 #pragma once
-#include <list>
+#include <vector>
 #include "ELement.h"
 
 class Snake
 {
 private:
-    std::list<Element*> elemList;
+    std::vector<Element*> elemList;
 public:
-    Snake(int , int, char aprnc = '*');
+    Snake(int , int, char aprnc = 'o');
 
     void move();
     void add_element(Element*);
-    std::list<Element*> get_elemList();
+    std::vector<Element*>* get_elemList();
 };

@@ -11,7 +11,7 @@ void Snake::add_element(Element* elem)
 	elemList.push_back(elem);
 }
 
-std::list<Element*> Snake::get_elemList()
+std::vector<Element*>* Snake::get_elemList()
 {
-	return elemList;
+	return &elemList;
 }
