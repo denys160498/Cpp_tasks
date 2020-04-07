@@ -6,7 +6,7 @@ private:
     int positionX;
     int positionY;
 public:
-    Element(int, int, char aprnc = '*');
+    Element(int, int, char aprnc = '+');
     int get_posX() const;
     int get_posY() const;
     void set_posX(int value);

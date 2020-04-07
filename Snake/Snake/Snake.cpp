@@ -9,6 +9,27 @@ Snake::Snake(int x, int y, char aprnc): direction('W')
 
 void Snake::add_element(Element* elem)
 {
+	switch (direction)
+	{
+	case 'W':
+		elem->set_posX(elemList.back()->get_posX());
+		elem->set_posY(elemList.back()->get_posY() + 1);
+		break;
+	case 'S':
+		elem->set_posX(elemList.back()->get_posX());
+		elem->set_posY(elemList.back()->get_posY() - 1);
+		break;
+	case 'A':
+		elem->set_posX(elemList.back()->get_posX() + 1);
+		elem->set_posY(elemList.back()->get_posY());
+		break;
+	case 'D':
+		elem->set_posX(elemList.back()->get_posX() - 1);
+		elem->set_posY(elemList.back()->get_posY());
+		break;
+	default:
+		break;
+	}
 	elemList.push_back(elem);
 }
 
@@ -28,16 +49,16 @@ void Snake::move()
 	switch (direction)
 	{
 	case 'W':
-		elemList[0]->set_posX(elemList[0]->get_posX() - 1);
-		break;
-	case 'S':
-		elemList[0]->set_posX(elemList[0]->get_posX() + 1);
-		break;
-	case 'A':
 		elemList[0]->set_posY(elemList[0]->get_posY() - 1);
 		break;
-	case 'D':
+	case 'S':
 		elemList[0]->set_posY(elemList[0]->get_posY() + 1);
+		break;
+	case 'A':
+		elemList[0]->set_posX(elemList[0]->get_posX() - 1);
+		break;
+	case 'D':
+		elemList[0]->set_posX(elemList[0]->get_posX() + 1);
 		break;
 	default:
 		break;

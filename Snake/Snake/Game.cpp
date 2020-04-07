@@ -31,7 +31,7 @@ void Game::inscribe_snake() {
 	{
 		//change appropriate Map cell to Element of Snake appearance
 		std::vector<std::string>* mapDescription = MapPtr->get_map_ptr();
-		(*mapDescription)[(*iter)->get_posX()][(*iter)->get_posY()] = (*iter)->get_appearance();
+		(*mapDescription)[(*iter)->get_posY()][(*iter)->get_posX()] = (*iter)->get_appearance();
 		iter++;
 	}
 }
