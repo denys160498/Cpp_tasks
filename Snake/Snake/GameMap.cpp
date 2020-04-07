@@ -27,6 +27,7 @@ void GameMap::draw() const
 		for (int j = 0; j <= width; j++)
 		{
 			std::cout << map[i][j];
+			std::cout << ' '; //to adjust map`s appearance
 		}
 		std::cout << std::endl;
 	}
