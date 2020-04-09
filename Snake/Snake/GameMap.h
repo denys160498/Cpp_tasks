@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Element.h"
 
 class GameMap 
 {
@@ -17,4 +18,5 @@ public:
 	int get_width() const;
 	int get_height() const;
 	std::vector<std::string>* get_map_ptr();
+	void draw_element(Element*);
 };

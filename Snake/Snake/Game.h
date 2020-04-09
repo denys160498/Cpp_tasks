@@ -1,6 +1,7 @@
 #pragma once
 #include "GameMap.h"
 #include "Snake.h"
+#include "Element.h"
 
 class Game 
 {
@@ -14,4 +15,6 @@ public:
 	void clear_map() const;
 	void inscribe_snake();
 	Snake* get_snake_ptr() const;
+	Element* create_random_element();
+	void draw_element_on_map(Element*);
 };

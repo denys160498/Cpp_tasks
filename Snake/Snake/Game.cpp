@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <cstdlib>
 
 Game::Game()
 {
@@ -29,9 +30,7 @@ void Game::inscribe_snake() {
 	std::vector<Element*>::iterator iterEnd = (*snakeElements).end();
 	while (iter != iterEnd)
 	{
-		//change appropriate Map cell to Element of Snake appearance
-		std::vector<std::string>* mapDescription = MapPtr->get_map_ptr();
-		(*mapDescription)[(*iter)->get_posY()][(*iter)->get_posX()] = (*iter)->get_appearance();
+		MapPtr->draw_element(*iter);
 		iter++;
 	}
 }
@@ -39,4 +38,25 @@ void Game::inscribe_snake() {
 Snake* Game::get_snake_ptr() const
 {
 	return SnakePtr;
+}
+
+//TODO: Think of separation of drawing the spawned element on map.
+Element* Game::create_random_element()
+{
+	int x, y;
+	//loop is to prevent creation of an element on snake
+	do
+	{
+		//generate random coordinates
+		x = rand() % (MapPtr->get_width() - 1) + 1;
+		y = rand() % (MapPtr->get_height() - 1) + 1;
+	} 
+	while (SnakePtr->are_coordinates_on_snake(x, y));
+	Element* elem = new Element(x, y);
+	return elem;
+}
+
+void Game::draw_element_on_map(Element* elem)
+{
+	MapPtr->draw_element(elem);
 }

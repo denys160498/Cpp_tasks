@@ -81,10 +81,26 @@ void Snake::move()
 void Snake::set_direction(char dir) 
 {
 	dir = std::toupper(dir);
-	// 'if' is to prevent setting the direction backwards
+	// 'if' is to prevent setting the backward direction
 	if ((direction == 'W' && dir == 'S') || (direction == 'D' && dir == 'A') || (direction == 'S' && dir == 'W') || (direction == 'A' && dir == 'D')) 
 	{
 		return;
 	}
 	direction = dir;
+}
+
+bool Snake::are_coordinates_on_snake(int x, int y) const
+{
+	bool isOnSnake = false;
+	auto iter = elemList.begin();
+	while (iter != elemList.end())
+	{
+		if ((*iter)->get_posX() == x && (*iter)->get_posY() == y)
+		{
+			isOnSnake = true;
+			break;
+		}
+		iter++;
+	}
+	return isOnSnake;
 }

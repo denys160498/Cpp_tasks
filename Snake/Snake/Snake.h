@@ -14,4 +14,5 @@ public:
     void add_element(Element*);
     void set_direction(char);
     std::vector<Element*>* get_elemList();
+    bool are_coordinates_on_snake(int , int ) const;
 };

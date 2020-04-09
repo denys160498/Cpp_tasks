@@ -62,3 +62,8 @@ void GameMap::clear()
 		}
 	}
 }
+
+void GameMap::draw_element(Element* element)
+{
+	map[element->get_posY()][element->get_posX()] = element->get_appearance();
+}
