@@ -37,7 +37,7 @@ std::vector<Element*>* Snake::get_elemList()
 {
 	return &elemList;
 }
-
+//TODO: implement Snakes motion aboard the Map
 void Snake::move() 
 {
 	int currElementPosX;

@@ -28,6 +28,7 @@ void Game::inscribe_snake() {
 	std::vector<Element*>* snakeElements = SnakePtr->get_elemList();
 	std::vector<Element*>::iterator iter = (*snakeElements).begin();
 	std::vector<Element*>::iterator iterEnd = (*snakeElements).end();
+
 	while (iter != iterEnd)
 	{
 		MapPtr->draw_element(*iter);
@@ -40,7 +41,6 @@ Snake* Game::get_snake_ptr() const
 	return SnakePtr;
 }
 
-//TODO: Think of separation of drawing the spawned element on map.
 Element* Game::create_random_element()
 {
 	int x, y;
@@ -50,13 +50,28 @@ Element* Game::create_random_element()
 		//generate random coordinates
 		x = rand() % (MapPtr->get_width() - 1) + 1;
 		y = rand() % (MapPtr->get_height() - 1) + 1;
-	} 
+	}
 	while (SnakePtr->are_coordinates_on_snake(x, y));
+
 	Element* elem = new Element(x, y);
+
 	return elem;
 }
 
 void Game::draw_element_on_map(Element* elem)
 {
 	MapPtr->draw_element(elem);
+}
+
+bool Game::check_is_snake_on_element(Element* elem) const
+{
+	Element* snakeHead = (*SnakePtr->get_elemList())[0];
+	bool isSnakeHeadOnElement = false;
+
+	if (snakeHead->get_posX() == elem->get_posX() && snakeHead->get_posY() == elem->get_posY())
+	{
+		isSnakeHeadOnElement = true;
+	}
+
+	return isSnakeHeadOnElement;
 }
