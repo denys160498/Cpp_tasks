@@ -4,7 +4,7 @@
 Game::Game()
 {
 	MapPtr = new GameMap;
-	SnakePtr = new Snake(MapPtr->get_width() / 2, MapPtr->get_height() / 2);
+	SnakePtr = new Snake(MapPtr->get_width(), MapPtr->get_height());
 }
 
 Game::~Game()

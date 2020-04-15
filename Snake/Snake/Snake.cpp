@@ -1,10 +1,14 @@
 #include "Snake.h"
 #include <cctype>
 
-Snake::Snake(int x, int y, char aprnc): direction('W')
+Snake::Snake(int mapW, int mapH, char aprnc): direction('W'), mapWidth(mapW), mapHeight(mapH)
 {
-	Element* firstElement = new Element(x, y, aprnc);
+	Element* firstElement = new Element(mapW / 2, mapH / 2, aprnc);
+	Element* secondElement = new Element(mapW / 2, mapH / 2);
+	Element* thirdElement = new Element(mapW / 2, mapH / 2);
 	elemList.push_back(firstElement);
+	this->add_element(secondElement);
+	this->add_element(thirdElement);
 }
 
 Snake::~Snake()
@@ -48,8 +52,7 @@ std::vector<Element*>* Snake::get_elemList()
 {
 	return &elemList;
 }
-//TODO: implement Snakes motion aboard the Map
-//maybe using try-catch
+
 void Snake::move() 
 {
 	int currElementPosX;
@@ -62,15 +65,35 @@ void Snake::move()
 	{
 	case 'W':
 		elemList[0]->set_posY(elemList[0]->get_posY() - 1);
+		//check upper border
+		if (elemList[0]->get_posY() < 1)
+		{
+			elemList[0]->set_posY(mapHeight - 1);
+		}
 		break;
 	case 'S':
 		elemList[0]->set_posY(elemList[0]->get_posY() + 1);
+		//check bottom border
+		if (elemList[0]->get_posY() > mapHeight - 1)
+		{
+			elemList[0]->set_posY(1);
+		}
 		break;
 	case 'A':
 		elemList[0]->set_posX(elemList[0]->get_posX() - 1);
+		//check left border
+		if (elemList[0]->get_posX() < 1)
+		{
+			elemList[0]->set_posX(mapWidth - 1);
+		}
 		break;
 	case 'D':
 		elemList[0]->set_posX(elemList[0]->get_posX() + 1);
+		//check right border
+		if (elemList[0]->get_posX() > mapWidth - 1)
+		{
+			elemList[0]->set_posX(1);
+		}
 		break;
 	default:
 		break;

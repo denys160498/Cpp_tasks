@@ -7,6 +7,8 @@ class Snake
 private:
     std::vector<Element*> elemList;
     char direction;
+    int mapWidth;
+    int mapHeight;
 public:
     Snake(int , int, char aprnc = 'o');
     ~Snake();
