@@ -9,7 +9,7 @@ private:
     char direction;
 public:
     Snake(int , int, char aprnc = 'o');
-
+    ~Snake();
     void move();
     void add_element(Element*);
     void set_direction(char);

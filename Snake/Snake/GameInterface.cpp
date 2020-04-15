@@ -3,7 +3,7 @@
 GameInterface::GameInterface(): GamePtr(nullptr)
 {}
 
-Game* GameInterface::create_game()
+void GameInterface::create_game()
 {
 	static bool isGameCreated = false;
 	//check if a Game has been already created
@@ -12,4 +12,9 @@ Game* GameInterface::create_game()
 		GamePtr = new Game;
 		isGameCreated = true;
 	}
+}
+
+void GameInterface::delete_game() 
+{
+	delete GamePtr;
 }

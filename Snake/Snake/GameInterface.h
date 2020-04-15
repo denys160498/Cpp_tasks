@@ -7,6 +7,6 @@ private:
 	Game* GamePtr;
 public:
 	GameInterface();
-	Game* create_game();
+	void create_game();
 	void delete_game();
 };

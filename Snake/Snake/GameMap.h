@@ -9,9 +9,8 @@ private:
 	int width;
 	int height;
 	char borderSign;
-public:
 	std::vector<std::string> map;
-	
+public:
 	GameMap(char bChar = '#' , int w = 25, int h = 25);
 	void draw() const;
 	void clear();

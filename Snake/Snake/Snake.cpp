@@ -7,6 +7,17 @@ Snake::Snake(int x, int y, char aprnc): direction('W')
 	elemList.push_back(firstElement);
 }
 
+Snake::~Snake()
+{
+	std::vector<Element*>::iterator iter = elemList.begin();
+	while (iter != elemList.end())
+	{
+		delete* iter;
+		iter++;
+	}
+	elemList.clear();
+}
+
 void Snake::add_element(Element* elem)
 {
 	switch (direction)
@@ -38,6 +49,7 @@ std::vector<Element*>* Snake::get_elemList()
 	return &elemList;
 }
 //TODO: implement Snakes motion aboard the Map
+//maybe using try-catch
 void Snake::move() 
 {
 	int currElementPosX;
@@ -65,7 +77,7 @@ void Snake::move()
 	}
 
 	//move the others elements
-	auto iter = elemList.begin()+1;
+	auto iter = elemList.begin() + 1;
 	while (iter != elemList.end())
 	{
 		currElementPosX = (*iter)->get_posX();

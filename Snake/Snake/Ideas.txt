@@ -1,0 +1,2 @@
+Implement formatting window according to selected size in GameInterface
+Implement saving the last game into a file
