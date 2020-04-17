@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CustomFunctions.cpp" />
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameInterface.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CustomFunctions.h" />
     <ClInclude Include="Element.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameInterface.h" />

@@ -1,8 +1,10 @@
 #include "GameInterface.h"
+#include "CustomFunctions.h"
 
 int main()
 {
-	GameInterface Interface;
+	CustomFunctions::setConsoleSize(25,25);
+	/*GameInterface Interface;
 	Interface.create_game();
 	Interface.create_game();
 	
@@ -18,7 +20,7 @@ int main()
 		GameObj.get_snake_ptr()->move();
 		GameObj.inscribe_snake();
 		GameObj.draw_map();
-	}
+	}*/
 	//GameObj.draw_map();
 	/*
 	Element el1(12, 12);

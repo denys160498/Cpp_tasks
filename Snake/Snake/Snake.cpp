@@ -21,7 +21,7 @@ Snake::~Snake()
 	}
 	elemList.clear();
 }
-
+//TODO: Add a handling of addition element on border position
 void Snake::add_element(Element* elem)
 {
 	switch (direction)
@@ -65,7 +65,7 @@ void Snake::move()
 	{
 	case 'W':
 		elemList[0]->set_posY(elemList[0]->get_posY() - 1);
-		//check upper border
+		//check if on upper border
 		if (elemList[0]->get_posY() < 1)
 		{
 			elemList[0]->set_posY(mapHeight - 1);
@@ -73,7 +73,7 @@ void Snake::move()
 		break;
 	case 'S':
 		elemList[0]->set_posY(elemList[0]->get_posY() + 1);
-		//check bottom border
+		//check if on bottom border
 		if (elemList[0]->get_posY() > mapHeight - 1)
 		{
 			elemList[0]->set_posY(1);
@@ -81,7 +81,7 @@ void Snake::move()
 		break;
 	case 'A':
 		elemList[0]->set_posX(elemList[0]->get_posX() - 1);
-		//check left border
+		//check if on left border
 		if (elemList[0]->get_posX() < 1)
 		{
 			elemList[0]->set_posX(mapWidth - 1);
@@ -89,7 +89,7 @@ void Snake::move()
 		break;
 	case 'D':
 		elemList[0]->set_posX(elemList[0]->get_posX() + 1);
-		//check right border
+		//check if on right border
 		if (elemList[0]->get_posX() > mapWidth - 1)
 		{
 			elemList[0]->set_posX(1);
