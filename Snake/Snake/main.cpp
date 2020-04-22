@@ -3,15 +3,14 @@
 
 int main()
 {
-	CustomFunctions::setConsoleSize(25,25);
-	/*GameInterface Interface;
+	GameInterface Interface;
 	Interface.create_game();
 	Interface.create_game();
 	
 	Game GameObj;
 	GameObj.inscribe_snake();
 	GameObj.draw_map();
-
+	/*
 	GameObj.get_snake_ptr()->set_direction('d');
 
 	for (int i = 0; i < 15; i++)

@@ -9,4 +9,5 @@ public:
 	GameInterface();
 	void create_game();
 	void delete_game();
+	void game_process();
 };

@@ -1,13 +1,23 @@
 //All custom functions for Game snake implemented here
 #include "CustomFunctions.h"
-#include "windows.h"
+#include <string>
+#include <cstring>
 
-//TODO: finish this function and implement others to handle console appearance
+//TODO: implement others to handle console appearance
 void CustomFunctions::setConsoleSize(int width, int height)
 {
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD bufferSize = { width, height };
-	SetConsoleScreenBufferSize(consoleHandle, bufferSize);
-	HWND windowHandle = GetActiveWindow();
-	MoveWindow(windowHandle,0,0,width,height,true);
+	//adjust width and height
+	width += 2;
+	height += 2;
+
+	std::string strWidth = std::to_string(width);
+	std::string strHeight = std::to_string(height);
+
+	//form commandline
+	char command[30] = "mode con cols=";
+	strcat_s(command, strWidth.c_str());
+	strcat_s(command, " lines=");
+	strcat_s(command, strHeight.c_str());
+
+	system(command);
 }
