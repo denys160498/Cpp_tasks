@@ -1,10 +1,12 @@
 #include "Game.h"
 #include <cstdlib>
 
-Game::Game()
+Game::Game(GameMap* Map, Snake* GameSnake): MapPtr(Map), SnakePtr(GameSnake)
 {
-	MapPtr = new GameMap;
-	SnakePtr = new Snake(MapPtr->get_width(), MapPtr->get_height());
+	if (Map == nullptr || GameSnake == nullptr)
+	{
+		throw 1;
+	}
 }
 
 Game::~Game()

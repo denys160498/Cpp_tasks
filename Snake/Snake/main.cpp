@@ -4,12 +4,6 @@
 int main()
 {
 	GameInterface Interface;
-	Interface.create_game();
-	Interface.create_game();
-	
-	Game GameObj;
-	GameObj.inscribe_snake();
-	GameObj.draw_map();
 	/*
 	GameObj.get_snake_ptr()->set_direction('d');
 

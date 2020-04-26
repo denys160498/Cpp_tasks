@@ -9,7 +9,7 @@ private:
 	GameMap* MapPtr;
 	Snake* SnakePtr;
 public:
-	Game();
+	Game(GameMap*, Snake*);
 	~Game();
 	void draw_map() const;
 	void clear_map() const;

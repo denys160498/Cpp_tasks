@@ -1,6 +1,7 @@
 #pragma once
 
-namespace CustomFunctions
+namespace custfuncs
 {
 	void setConsoleSize(int, int);
+	void createNewWindow();
 }

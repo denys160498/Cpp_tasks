@@ -1,10 +1,11 @@
-//All custom functions for Game snake implemented here
+//This file contains all custom functions for Game "Snake"
 #include "CustomFunctions.h"
 #include <string>
 #include <cstring>
+#include "windows.h"
 
-//TODO: implement others to handle console appearance
-void CustomFunctions::setConsoleSize(int width, int height)
+//TODO: implement other functions to handle console appearance
+void custfuncs::setConsoleSize(int width, int height)
 {
 	//adjust width and height
 	width += 2;
@@ -12,12 +13,15 @@ void CustomFunctions::setConsoleSize(int width, int height)
 
 	std::string strWidth = std::to_string(width);
 	std::string strHeight = std::to_string(height);
+	
+	//form a commandline
+	std::string commandLine = "mode con cols=" + strWidth + " lines=" + strHeight;
 
-	//form commandline
-	char command[30] = "mode con cols=";
-	strcat_s(command, strWidth.c_str());
-	strcat_s(command, " lines=");
-	strcat_s(command, strHeight.c_str());
+	system(commandLine.c_str());
+}
 
-	system(command);
+void custfuncs::createNewWindow()
+{
+	FreeConsole();
+	AllocConsole();
 }
