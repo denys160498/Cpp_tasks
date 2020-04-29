@@ -3,8 +3,12 @@
 
 int main()
 {
-	GameInterface Interface;
-	/*
+	std::string items[] = {"One","Two","Three","Four"};
+	char choice = '0';
+	do {
+		choice = custfuncs::displayMenuItems(items, 4);
+	} while (choice != '4');
+		/*
 	GameObj.get_snake_ptr()->set_direction('d');
 
 	for (int i = 0; i < 15; i++)

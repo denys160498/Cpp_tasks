@@ -8,8 +8,8 @@ GameInterface::GameInterface() :
 	MapPtr(nullptr),
 	SnakePtr(nullptr),
 	mapAppearance('#'),
-	mapType("STANDART"),
-	snakeType("STANDART"),
+	mapType(mapType::STANDART),
+	snakeType(snakeType::STANDART),
 	mapSizes {25,25}
 {
 }
@@ -37,7 +37,8 @@ void GameInterface::create_map()
 	//check if a Map has been already created
 	if (!isMapCreated)
 	{
-		if (mapType == "STANDART")
+		//create a map of type specified
+		if (mapType == mapType::STANDART)
 		{
 			MapPtr = new GameMap(mapAppearance, mapSizes[0], mapSizes[1]);
 		}
@@ -53,10 +54,19 @@ void GameInterface::create_map()
 void GameInterface::create_snake()
 {
 	static bool isSnakeCreated = false;
-	//check if a Map has been already created
+	//check if a Snake has been already created
 	if (!isSnakeCreated)
 	{
-		SnakePtr = new Snake(mapAppearance, mapSizes[0], mapSizes[1]);
+		//create a snake of type specified
+		if (snakeType == snakeType::STANDART)
+		{
+			SnakePtr = new Snake(mapAppearance, mapSizes[0], mapSizes[1]);
+		}
+		else
+		{
+			std::cout << "Invalid Type of Snake!";
+			return;
+		}
 		isSnakeCreated = true;
 	}
 }
@@ -74,20 +84,105 @@ void GameInterface::start_game()
 {
 }
 
-//TODO: finish the function
-void GameInterface::game_menu()
+//Menu functions
+char GameInterface::main_menu() const
 {
-	char choice;
+	char choice = '0';
+	std::string items[] = {"New game","Options","Quit"};
+
+	do
+	{
+		choice = custfuncs::displayMenuItems(items, 3);
+	} while (choice != '3');
+	
+	return choice;
+}
+
+
+void GameInterface::game_options()
+{
+	char choice = '0';
 
 	custfuncs::setConsoleSize(20, 4);
 
 	do
 	{
 		system("cls");
-		std::cout << "(1) New game \n";
-		std::cout << "(2) Options \n";
-		std::cout << "(3) Quit \n";
+		std::cout << "(1) Change Map size \n";
+		std::cout << "(2) Change Map appearance \n";
+		std::cout << "(3) Change Map type \n";
+		std::cout << "(4) Change Snake type \n";
+		std::cout << "(5) <-Back \n";
 		std::cout << "Make your choice: ";
 		choice = _getch();
-	} while (choice != '1' && choice != '2' && choice != '3');
+	} while (choice != '5');
+}
+
+void GameInterface::set_map_size()
+{
+	char choice = '0';
+
+	custfuncs::setConsoleSize(20, 4);
+
+	do
+	{
+		system("cls");
+		std::cout << "(1) Small (10x10) \n";
+		std::cout << "(2) Medium (25x25) \n";
+		std::cout << "(3) Big (50x50) \n";
+		std::cout << "(4) <-Back \n";
+		std::cout << "Make your choice: ";
+		choice = _getch();
+
+		switch (choice)
+		{
+		case '1': 
+			mapSizes[0] = 10;
+			mapSizes[1] = 10;
+			break;
+		case '2':
+			mapSizes[0] = 25;
+			mapSizes[1] = 25;
+			break;
+		case '3':
+			mapSizes[0] = 50;
+			mapSizes[1] = 50;
+			break;
+		}
+	} while (choice != '4');
+}
+void GameInterface::set_map_appearance()
+{
+	char choice = '0';
+
+	custfuncs::setConsoleSize(20, 4);
+
+	do
+	{
+		system("cls");
+		std::cout << "(1) Standart (#) \n";
+		std::cout << "(2) Rich ($) \n";
+		std::cout << "(3) Round (o) \n";
+		std::cout << "(4) Enter custom \n";
+		std::cout << "(5) <-Back \n";
+		std::cout << "Make your choice: ";
+		choice = _getch();
+
+		switch (choice)
+		{
+		case '1':
+			mapAppearance = '#';
+			break;
+		case '2':
+			mapAppearance = '$';
+			break;
+		case '3':
+			mapAppearance = 'o';
+			break;
+		case '4':
+			std::cout << "Enter a custom appearance: ";
+			mapAppearance = _getch();
+			break;
+		}
+	} while (choice != '5');
 }
