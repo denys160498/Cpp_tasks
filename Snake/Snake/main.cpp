@@ -3,11 +3,8 @@
 
 int main()
 {
-	std::string items[] = {"One","Two","Three","Four"};
-	char choice = '0';
-	do {
-		choice = custfuncs::displayMenuItems(items, 4);
-	} while (choice != '4');
+	GameInterface Interface;
+	Interface.game_options();
 		/*
 	GameObj.get_snake_ptr()->set_direction('d');
 

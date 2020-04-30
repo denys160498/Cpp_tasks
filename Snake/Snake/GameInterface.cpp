@@ -80,20 +80,18 @@ void GameInterface::game_process()
 {
 }
 
-void GameInterface::start_game()
-{
-}
-
 //Menu functions
 char GameInterface::main_menu() const
 {
 	char choice = '0';
 	std::string items[] = {"New game","Options","Quit"};
+	//Getting the number of last (quit) option
+	char quitChar = sizeof(items) / sizeof(*items) + '0';
 
 	do
 	{
-		choice = custfuncs::displayMenuItems(items, 3);
-	} while (choice != '3');
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
+	} while (choice != quitChar);
 	
 	return choice;
 }
@@ -102,37 +100,42 @@ char GameInterface::main_menu() const
 void GameInterface::game_options()
 {
 	char choice = '0';
-
-	custfuncs::setConsoleSize(20, 4);
+	std::string items[] = { "Change Map size","Change Map appearance","Change Map type","Change Snake type","<-Back"};
+	//Getting the number of last (quit) option
+	char quitChar = sizeof(items) / sizeof(*items) + '0';
 
 	do
 	{
-		system("cls");
-		std::cout << "(1) Change Map size \n";
-		std::cout << "(2) Change Map appearance \n";
-		std::cout << "(3) Change Map type \n";
-		std::cout << "(4) Change Snake type \n";
-		std::cout << "(5) <-Back \n";
-		std::cout << "Make your choice: ";
-		choice = _getch();
-	} while (choice != '5');
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
+
+		switch (choice)
+		{
+		case '1':
+			this->select_map_size();
+			break;
+		case '2':
+			this->select_map_appearance();
+			break;
+		case '3':
+			this->select_map_type();
+			break;
+		case '4':
+			this->select_snake_type();
+			break;
+		}
+	} while (choice != quitChar);
 }
 
-void GameInterface::set_map_size()
+void GameInterface::select_map_size()
 {
 	char choice = '0';
-
-	custfuncs::setConsoleSize(20, 4);
+	std::string items[] = { "Small (10x10)","Medium (25x25)","Big (50x50)","<-Back"};
+	//Getting the number of last (quit) option
+	char quitChar = sizeof(items) / sizeof(*items) + '0';
 
 	do
 	{
-		system("cls");
-		std::cout << "(1) Small (10x10) \n";
-		std::cout << "(2) Medium (25x25) \n";
-		std::cout << "(3) Big (50x50) \n";
-		std::cout << "(4) <-Back \n";
-		std::cout << "Make your choice: ";
-		choice = _getch();
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
 
 		switch (choice)
 		{
@@ -149,24 +152,19 @@ void GameInterface::set_map_size()
 			mapSizes[1] = 50;
 			break;
 		}
-	} while (choice != '4');
+	} while (choice != quitChar);
 }
-void GameInterface::set_map_appearance()
+
+void GameInterface::select_map_appearance()
 {
 	char choice = '0';
-
-	custfuncs::setConsoleSize(20, 4);
+	std::string items[] = { "Standart (#)","Rich ($)","Round (o)","Enter custom","<-Back" };
+	//Getting the number of last (quit) option
+	char quitChar = sizeof(items) / sizeof(*items) + '0';
 
 	do
 	{
-		system("cls");
-		std::cout << "(1) Standart (#) \n";
-		std::cout << "(2) Rich ($) \n";
-		std::cout << "(3) Round (o) \n";
-		std::cout << "(4) Enter custom \n";
-		std::cout << "(5) <-Back \n";
-		std::cout << "Make your choice: ";
-		choice = _getch();
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
 
 		switch (choice)
 		{
@@ -184,5 +182,45 @@ void GameInterface::set_map_appearance()
 			mapAppearance = _getch();
 			break;
 		}
-	} while (choice != '5');
+	} while (choice != quitChar);
+}
+
+void GameInterface::select_map_type()
+{
+	char choice = '0';
+	std::string items[] = { "Standart","<-Back"};
+	//Getting the number of last (quit) option
+	char quitChar = sizeof(items) / sizeof(*items) + '0';
+
+	do
+	{
+		choice = custfuncs::displayMenuItems(items, sizeof(items)/sizeof(*items));
+
+		switch (choice)
+		{
+		case '1':
+			mapType = mapType::STANDART;
+			break;
+		}
+	} while (choice != quitChar);
+}
+
+void GameInterface::select_snake_type()
+{
+	char choice = '0';
+	std::string items[] = { "Standart","<-Back" };
+	//Getting the number of last (quit) option
+	char quitChar = sizeof(items) / sizeof(*items) + '0';
+
+	do
+	{
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
+
+		switch (choice)
+		{
+		case '1':
+			snakeType = snakeType::STANDART;
+			break;
+		}
+	} while (choice != quitChar);
 }
