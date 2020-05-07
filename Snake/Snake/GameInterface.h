@@ -2,6 +2,9 @@
 #include "Game.h"
 #include "Snake.h"
 #include "GameMap.h"
+#include "CustomFunctions.h"
+#include <iostream>
+#include "conio.h"
 
 class GameInterface
 {
@@ -27,7 +30,7 @@ private:
 public:
 	GameInterface();
 	//menu functions
-	char main_menu() const;
+	bool main_menu(); //returns TRUE if a player selected 'New Game' and a Game has been created
 	void game_options();
 	void select_map_size();
 	void select_map_appearance();

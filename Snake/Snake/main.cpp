@@ -4,7 +4,7 @@
 int main()
 {
 	GameInterface Interface;
-	Interface.game_options();
+	Interface.main_menu();
 		/*
 	GameObj.get_snake_ptr()->set_direction('d');
 

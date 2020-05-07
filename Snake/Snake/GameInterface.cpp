@@ -1,7 +1,4 @@
 #include "GameInterface.h"
-#include "CustomFunctions.h"
-#include <iostream>
-#include "conio.h"
 
 GameInterface::GameInterface() :
 	GamePtr(nullptr),
@@ -21,12 +18,14 @@ void GameInterface::create_game()
 	if (!isGameCreated)
 	{
 		try {
+			this->create_map();
+			this->create_snake();
 			GamePtr = new Game(MapPtr, SnakePtr);
 			isGameCreated = true;
 		}
 		catch (int a)
 		{
-			std::cout << "[ERROR] Unable to create a Game because either Map or Snake is not created\n";
+			std::cout << "[ERROR] Unable to create a Game because either a Map or a Snake is not created\n";
 		}
 	}	
 }
@@ -44,7 +43,7 @@ void GameInterface::create_map()
 		}
 		else
 		{
-			std::cout << "Invalid Type of Map!";
+			std::cout << "[ERROR] Invalid Type of Map!";
 			return;
 		}
 		isMapCreated = true;
@@ -64,7 +63,7 @@ void GameInterface::create_snake()
 		}
 		else
 		{
-			std::cout << "Invalid Type of Snake!";
+			std::cout << "[ERROR] Invalid Type of Snake!";
 			return;
 		}
 		isSnakeCreated = true;
@@ -73,6 +72,8 @@ void GameInterface::create_snake()
 
 void GameInterface::delete_game() 
 {
+	delete SnakePtr;
+	delete MapPtr;
 	delete GamePtr;
 }
 
@@ -81,9 +82,10 @@ void GameInterface::game_process()
 }
 
 //Menu functions
-char GameInterface::main_menu() const
+bool GameInterface::main_menu()
 {
 	char choice = '0';
+	bool isGameCreated = false;
 	std::string items[] = {"New game","Options","Quit"};
 	//Getting the number of last (quit) option
 	char quitChar = sizeof(items) / sizeof(*items) + '0';
@@ -91,11 +93,22 @@ char GameInterface::main_menu() const
 	do
 	{
 		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
-	} while (choice != quitChar);
-	
-	return choice;
-}
 
+		switch (choice)
+		{
+		case '1':
+			custfuncs::createNewWindow();
+			this->create_game();
+			isGameCreated = true;
+			break;
+		case '2':
+			this->game_options();
+			break;
+		}
+	} while (choice != quitChar && choice != '1');
+	
+	return isGameCreated;
+}
 
 void GameInterface::game_options()
 {
@@ -106,7 +119,7 @@ void GameInterface::game_options()
 
 	do
 	{
-		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items), "Options:");
 
 		switch (choice)
 		{
@@ -135,7 +148,7 @@ void GameInterface::select_map_size()
 
 	do
 	{
-		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items), "Select map size:");
 
 		switch (choice)
 		{
@@ -164,7 +177,7 @@ void GameInterface::select_map_appearance()
 
 	do
 	{
-		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items), "Select map appearance:");
 
 		switch (choice)
 		{
@@ -194,7 +207,7 @@ void GameInterface::select_map_type()
 
 	do
 	{
-		choice = custfuncs::displayMenuItems(items, sizeof(items)/sizeof(*items));
+		choice = custfuncs::displayMenuItems(items, sizeof(items)/sizeof(*items), "Select map type:");
 
 		switch (choice)
 		{
@@ -214,7 +227,7 @@ void GameInterface::select_snake_type()
 
 	do
 	{
-		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items));
+		choice = custfuncs::displayMenuItems(items, sizeof(items) / sizeof(*items), "Select snake type:");
 
 		switch (choice)
 		{

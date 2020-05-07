@@ -9,5 +9,5 @@ namespace custfuncs
 {
 	void setConsoleSize(int, int);
 	void createNewWindow();
-	char displayMenuItems(std::string [], int );
+	char displayMenuItems(std::string [], int , std::string title = "");
 }

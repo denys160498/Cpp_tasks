@@ -23,12 +23,17 @@ void custfuncs::createNewWindow()
 	AllocConsole();
 }
 
-char custfuncs::displayMenuItems(std::string items[], int itemsAmount)
+char custfuncs::displayMenuItems(std::string items[], int itemsAmount, std::string title)
 {
 	char choice = '0';
 
 	custfuncs::setConsoleSize(30, itemsAmount);
 	system("cls");
+
+	if (title != "")
+	{
+		std::cout << title << '\n';
+	}
 
 	for (int i = 0; i < itemsAmount; i++)
 	{
