@@ -9,12 +9,6 @@ Game::Game(GameMap* Map, Snake* GameSnake): MapPtr(Map), SnakePtr(GameSnake)
 	}
 }
 
-Game::~Game()
-{
-	delete MapPtr;
-	delete SnakePtr;
-}
-
 void Game::draw_map() const
 {
 	MapPtr->draw();

@@ -11,17 +11,18 @@ GameInterface::GameInterface() :
 {
 }
 
+//Handle a re-create of a Game (isGameCreated)
 void GameInterface::create_game()
 {
-	static bool isGameCreated = false;
-	//check if a Game has been already created
-	if (!isGameCreated)
+	//check if a Game hasn`t been already created
+	if (GamePtr == nullptr)
 	{
 		try {
+			custfuncs::createNewWindow();
+			custfuncs::setConsoleSize(mapSizes[0], mapSizes[1]);
 			this->create_map();
 			this->create_snake();
 			GamePtr = new Game(MapPtr, SnakePtr);
-			isGameCreated = true;
 		}
 		catch (int a)
 		{
@@ -32,9 +33,8 @@ void GameInterface::create_game()
 
 void GameInterface::create_map()
 {
-	static bool isMapCreated = false;
-	//check if a Map has been already created
-	if (!isMapCreated)
+	//check if a Map hasn`t been already created
+	if (MapPtr == nullptr)
 	{
 		//create a map of type specified
 		if (mapType == mapType::STANDART)
@@ -46,15 +46,13 @@ void GameInterface::create_map()
 			std::cout << "[ERROR] Invalid Type of Map!";
 			return;
 		}
-		isMapCreated = true;
 	}
 }
 
 void GameInterface::create_snake()
 {
-	static bool isSnakeCreated = false;
-	//check if a Snake has been already created
-	if (!isSnakeCreated)
+	//check if a Snake hasn`t been already created
+	if (SnakePtr == nullptr)
 	{
 		//create a snake of type specified
 		if (snakeType == snakeType::STANDART)
@@ -66,12 +64,12 @@ void GameInterface::create_snake()
 			std::cout << "[ERROR] Invalid Type of Snake!";
 			return;
 		}
-		isSnakeCreated = true;
 	}
 }
 
 void GameInterface::delete_game() 
 {
+	custfuncs::deleteCurrentWindow();
 	delete SnakePtr;
 	delete MapPtr;
 	delete GamePtr;
@@ -79,13 +77,15 @@ void GameInterface::delete_game()
 
 void GameInterface::game_process()
 {
+	std::cout << "In game!";
+	system("pause");
 }
 
 //Menu functions
 bool GameInterface::main_menu()
 {
 	char choice = '0';
-	bool isGameCreated = false;
+	bool isGameToBeCreated = false;
 	std::string items[] = {"New game","Options","Quit"};
 	//Getting the number of last (quit) option
 	char quitChar = sizeof(items) / sizeof(*items) + '0';
@@ -97,9 +97,7 @@ bool GameInterface::main_menu()
 		switch (choice)
 		{
 		case '1':
-			custfuncs::createNewWindow();
-			this->create_game();
-			isGameCreated = true;
+			isGameToBeCreated = true;
 			break;
 		case '2':
 			this->game_options();
@@ -107,7 +105,7 @@ bool GameInterface::main_menu()
 		}
 	} while (choice != quitChar && choice != '1');
 	
-	return isGameCreated;
+	return isGameToBeCreated;
 }
 
 void GameInterface::game_options()

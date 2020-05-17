@@ -10,7 +10,6 @@ private:
 	Snake* SnakePtr;
 public:
 	Game(GameMap*, Snake*);
-	~Game();
 	void draw_map() const;
 	void clear_map() const;
 	void inscribe_snake();

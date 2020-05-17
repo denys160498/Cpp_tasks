@@ -44,3 +44,9 @@ char custfuncs::displayMenuItems(std::string items[], int itemsAmount, std::stri
 
 	return choice;
 }
+
+void custfuncs::deleteCurrentWindow()
+{
+	FreeConsole();
+	AttachConsole(ATTACH_PARENT_PROCESS);
+}
