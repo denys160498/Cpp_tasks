@@ -28,7 +28,7 @@ void GameInterface::create_game()
 		{
 			std::cout << "[ERROR] Unable to create a Game because either a Map or a Snake is not created\n";
 		}
-	}	
+	}
 }
 
 void GameInterface::create_map()
@@ -84,6 +84,7 @@ void GameInterface::game_process()
 //Menu functions
 bool GameInterface::main_menu()
 {
+	custfuncs::logger(custfuncs::log, "main menu");
 	char choice = '0';
 	bool isGameToBeCreated = false;
 	std::string items[] = {"New game","Options","Quit"};
