@@ -11,7 +11,6 @@ GameInterface::GameInterface() :
 {
 }
 
-//Handle a re-create of a Game (isGameCreated)
 void GameInterface::create_game()
 {
 	//check if a Game hasn`t been already created
@@ -73,6 +72,9 @@ void GameInterface::delete_game()
 	delete SnakePtr;
 	delete MapPtr;
 	delete GamePtr;
+	SnakePtr = nullptr;
+	MapPtr = nullptr;
+	GamePtr = nullptr;
 }
 
 void GameInterface::game_process()
@@ -84,7 +86,6 @@ void GameInterface::game_process()
 //Menu functions
 bool GameInterface::main_menu()
 {
-	custfuncs::logger(custfuncs::log, "main menu");
 	char choice = '0';
 	bool isGameToBeCreated = false;
 	std::string items[] = {"New game","Options","Quit"};
