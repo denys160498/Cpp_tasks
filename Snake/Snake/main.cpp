@@ -3,6 +3,7 @@
 
 int main()
 {
+	
 	GameInterface Interface;
 	bool isGameToBeCreated = false;
 	do

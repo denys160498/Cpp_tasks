@@ -18,7 +18,7 @@ void GameInterface::create_game()
 	{
 		try {
 			custfuncs::createNewWindow();
-			custfuncs::setConsoleSize(mapSizes[0], mapSizes[1]);
+			custfuncs::setConsoleSize(mapSizes[0] * 2, mapSizes[1]);
 			this->create_map();
 			this->create_snake();
 			GamePtr = new Game(MapPtr, SnakePtr);
@@ -36,12 +36,11 @@ void GameInterface::create_map()
 	if (MapPtr == nullptr)
 	{
 		//create a map of type specified
-		if (mapType == mapType::STANDART)
+		switch (mapType)
 		{
-			MapPtr = new GameMap(mapAppearance, mapSizes[0], mapSizes[1]);
-		}
-		else
-		{
+		case mapType::STANDART: 
+			MapPtr = new GameMap(mapAppearance, mapSizes[0], mapSizes[1]); break;
+		default:
 			std::cout << "[ERROR] Invalid Type of Map!";
 			return;
 		}
@@ -54,12 +53,11 @@ void GameInterface::create_snake()
 	if (SnakePtr == nullptr)
 	{
 		//create a snake of type specified
-		if (snakeType == snakeType::STANDART)
+		switch (snakeType)
 		{
-			SnakePtr = new Snake(mapAppearance, mapSizes[0], mapSizes[1]);
-		}
-		else
-		{
+		case snakeType::STANDART:
+			SnakePtr = new Snake(mapAppearance, mapSizes[0], mapSizes[1]); break;
+		default:
 			std::cout << "[ERROR] Invalid Type of Snake!";
 			return;
 		}
@@ -79,8 +77,25 @@ void GameInterface::delete_game()
 
 void GameInterface::game_process()
 {
-	std::cout << "In game!";
-	system("pause");
+	Element* randomElement = nullptr;
+	char direction = 'W';
+
+	while (direction != 'E')
+	{
+		MapPtr->clear();
+		if (randomElement == nullptr)
+		{
+			randomElement = GamePtr->create_random_element();
+		}
+
+		GamePtr->inscribe_snake_on_map();
+		MapPtr->inscribe_element(randomElement);
+		MapPtr->draw();
+
+		direction = _getch();
+		SnakePtr->set_direction(direction);
+		SnakePtr->move();
+	}
 }
 
 //Menu functions
@@ -142,7 +157,7 @@ void GameInterface::game_options()
 void GameInterface::select_map_size()
 {
 	char choice = '0';
-	std::string items[] = { "Small (10x10)","Medium (25x25)","Big (50x50)","<-Back"};
+	std::string items[] = { "Small (15x15)","Medium (25x25)","Big (50x50)","<-Back"};
 	//Getting the number of last (quit) option
 	char quitChar = sizeof(items) / sizeof(*items) + '0';
 
@@ -153,8 +168,8 @@ void GameInterface::select_map_size()
 		switch (choice)
 		{
 		case '1': 
-			mapSizes[0] = 10;
-			mapSizes[1] = 10;
+			mapSizes[0] = 15;
+			mapSizes[1] = 15;
 			break;
 		case '2':
 			mapSizes[0] = 25;

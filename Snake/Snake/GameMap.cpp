@@ -22,6 +22,7 @@ GameMap::GameMap(char bChar, int w, int h) : borderSign(bChar), width(w), height
 
 void GameMap::draw() const
 {
+	system("cls");
 	for (int i = 0; i <= height; i++)
 	{
 		for (int j = 0; j <= width; j++)
@@ -63,7 +64,7 @@ void GameMap::clear()
 	}
 }
 
-void GameMap::draw_element(Element* element)
+void GameMap::inscribe_element(Element* element)
 {
 	map[element->get_posY()][element->get_posX()] = element->get_appearance();
 }

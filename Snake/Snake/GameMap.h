@@ -11,11 +11,11 @@ private:
 	char borderSign;
 	std::vector<std::string> map;
 public:
-	GameMap(char bChar = '#' , int w = 25, int h = 25);
+	GameMap(char bChar = '#', int w = 25, int h = 25);
 	void draw() const;
 	void clear();
 	int get_width() const;
 	int get_height() const;
 	std::vector<std::string>* get_map_ptr();
-	void draw_element(Element*);
+	void inscribe_element(Element*);
 };

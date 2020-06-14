@@ -10,11 +10,8 @@ private:
 	Snake* SnakePtr;
 public:
 	Game(GameMap*, Snake*);
-	void draw_map() const;
-	void clear_map() const;
-	void inscribe_snake();
+	void inscribe_snake_on_map();
 	Snake* get_snake_ptr() const;
 	Element* create_random_element();
-	void draw_element_on_map(Element*);
 	bool check_is_snake_on_element(Element*) const;
 };

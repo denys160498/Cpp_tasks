@@ -116,8 +116,8 @@ void Snake::move()
 void Snake::set_direction(char dir) 
 {
 	dir = std::toupper(dir);
-	// 'if' is to prevent setting the backward direction
-	if ((direction == 'W' && dir == 'S') || (direction == 'D' && dir == 'A') || (direction == 'S' && dir == 'W') || (direction == 'A' && dir == 'D')) 
+	// 'if' is to prevent setting the backward direction and setting invalid direction
+	if ((direction == 'W' && dir == 'S') || (direction == 'D' && dir == 'A') || (direction == 'S' && dir == 'W') || (direction == 'A' && dir == 'D') || (direction != 'W' && direction != 'S' && direction != 'A' && direction != 'D1'))
 	{
 		return;
 	}

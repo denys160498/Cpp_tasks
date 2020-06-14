@@ -9,25 +9,15 @@ Game::Game(GameMap* Map, Snake* GameSnake): MapPtr(Map), SnakePtr(GameSnake)
 	}
 }
 
-void Game::draw_map() const
-{
-	MapPtr->draw();
-}
-
-void Game::clear_map() const
-{
-	MapPtr->clear();
-}
-
 //draw snake on map element by element
-void Game::inscribe_snake() {
+void Game::inscribe_snake_on_map() {
 	std::vector<Element*>* snakeElements = SnakePtr->get_elemList();
 	std::vector<Element*>::iterator iter = (*snakeElements).begin();
 	std::vector<Element*>::iterator iterEnd = (*snakeElements).end();
 
 	while (iter != iterEnd)
 	{
-		MapPtr->draw_element(*iter);
+		MapPtr->inscribe_element(*iter);
 		iter++;
 	}
 }
@@ -52,11 +42,6 @@ Element* Game::create_random_element()
 	Element* elem = new Element(x, y);
 
 	return elem;
-}
-
-void Game::draw_element_on_map(Element* elem)
-{
-	MapPtr->draw_element(elem);
 }
 
 bool Game::check_is_snake_on_element(Element* elem) const

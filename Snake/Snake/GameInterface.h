@@ -30,7 +30,7 @@ private:
 public:
 	GameInterface();
 	//menu functions
-	bool main_menu(); //returns TRUE if a player selected 'New Game' and a Game has been created
+	bool main_menu(); //returns TRUE if a player selected 'New Game' and a Game is to be created
 	void game_options();
 	void select_map_size();
 	void select_map_appearance();
