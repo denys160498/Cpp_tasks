@@ -56,7 +56,7 @@ void GameInterface::create_snake()
 		switch (snakeType)
 		{
 		case snakeType::STANDART:
-			SnakePtr = new Snake(mapAppearance, mapSizes[0], mapSizes[1]); break;
+			SnakePtr = new Snake(mapSizes[0], mapSizes[1]); break;
 		default:
 			std::cout << "[ERROR] Invalid Type of Snake!";
 			return;
