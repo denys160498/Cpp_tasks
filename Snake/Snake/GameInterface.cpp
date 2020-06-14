@@ -77,16 +77,12 @@ void GameInterface::delete_game()
 
 void GameInterface::game_process()
 {
-	Element* randomElement = nullptr;
+	Element* randomElement = GamePtr->create_random_element();
 	char direction = 'W';
 
-	while (direction != 'E')
+	while (direction != 'e' && direction != 'E')
 	{
 		MapPtr->clear();
-		if (randomElement == nullptr)
-		{
-			randomElement = GamePtr->create_random_element();
-		}
 
 		GamePtr->inscribe_snake_on_map();
 		MapPtr->inscribe_element(randomElement);
@@ -95,6 +91,12 @@ void GameInterface::game_process()
 		direction = _getch();
 		SnakePtr->set_direction(direction);
 		SnakePtr->move();
+
+		if (GamePtr->check_is_snake_on_element(randomElement))
+		{
+			SnakePtr->add_element(randomElement);
+			randomElement = GamePtr->create_random_element();
+		}
 	}
 }
 
