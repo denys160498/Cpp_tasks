@@ -82,13 +82,31 @@ void GameInterface::game_process()
 
 	while (direction != 'e' && direction != 'E')
 	{
+		time_t prevtime;
+		time_t currtime;
+
 		MapPtr->clear();
 
 		GamePtr->inscribe_snake_on_map();
 		MapPtr->inscribe_element(randomElement);
 		MapPtr->draw();
 
-		direction = _getch();
+		prevtime = time(NULL);
+		while (!_kbhit())
+		{
+			currtime = time(NULL);
+			if (difftime(currtime, prevtime) > 0)
+			{
+				break;
+			}
+		}
+
+		if (_kbhit())
+		{
+			direction = _getch();
+			Sleep(750);
+		}
+
 		SnakePtr->set_direction(direction);
 		SnakePtr->move();
 
@@ -159,7 +177,7 @@ void GameInterface::game_options()
 void GameInterface::select_map_size()
 {
 	char choice = '0';
-	std::string items[] = { "Small (15x15)","Medium (25x25)","Big (50x50)","<-Back"};
+	std::string items[] = { "Small (8x8)","Medium (10x10)","Big (12x12)","<-Back"};
 	//Getting the number of last (quit) option
 	char quitChar = sizeof(items) / sizeof(*items) + '0';
 
@@ -170,16 +188,16 @@ void GameInterface::select_map_size()
 		switch (choice)
 		{
 		case '1': 
-			mapSizes[0] = 15;
-			mapSizes[1] = 15;
+			mapSizes[0] = 8;
+			mapSizes[1] = 8;
 			break;
 		case '2':
-			mapSizes[0] = 25;
-			mapSizes[1] = 25;
+			mapSizes[0] = 10;
+			mapSizes[1] = 10;
 			break;
 		case '3':
-			mapSizes[0] = 50;
-			mapSizes[1] = 50;
+			mapSizes[0] = 12;
+			mapSizes[1] = 12;
 			break;
 		}
 	} while (choice != quitChar);
