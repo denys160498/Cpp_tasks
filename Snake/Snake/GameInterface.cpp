@@ -7,7 +7,7 @@ GameInterface::GameInterface() :
 	mapAppearance('#'),
 	mapType(mapType::STANDART),
 	snakeType(snakeType::STANDART),
-	mapSizes {25,25}
+	mapSizes {10,10}
 {
 }
 
@@ -109,6 +109,13 @@ void GameInterface::game_process()
 
 		SnakePtr->set_direction(direction);
 		SnakePtr->move();
+		
+		if (GamePtr->check_for_game_over())
+		{
+			std::cout << "GAME OVER!\n";
+			system("pause");
+			break;
+		}
 
 		if (GamePtr->check_is_snake_on_element(randomElement))
 		{

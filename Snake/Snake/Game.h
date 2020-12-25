@@ -14,4 +14,5 @@ public:
 	Snake* get_snake_ptr() const;
 	Element* create_random_element();
 	bool check_is_snake_on_element(Element*) const;
+	bool check_for_game_over() const;
 };

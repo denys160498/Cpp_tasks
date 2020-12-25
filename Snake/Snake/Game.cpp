@@ -56,3 +56,24 @@ bool Game::check_is_snake_on_element(Element* elem) const
 
 	return isSnakeHeadOnElement;
 }
+
+bool Game::check_for_game_over() const
+{
+	bool isGameOver = false;
+
+	std::vector<Element*>* snakeElements = SnakePtr->get_elemList();
+	std::vector<Element*>::iterator iter = (*snakeElements).begin() + 1;
+	std::vector<Element*>::iterator iterEnd = (*snakeElements).end();
+
+	while (iter != iterEnd)
+	{
+		if (this->check_is_snake_on_element(*iter))
+		{
+			isGameOver = true;
+			break;
+		}
+		iter++;
+	}
+
+	return isGameOver;
+}
